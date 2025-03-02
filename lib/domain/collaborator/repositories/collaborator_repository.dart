@@ -1,5 +1,5 @@
 
-import 'package:go_work/domain/entities/collaborator/Collaborator_entity.dart';
+import 'package:go_work/domain/collaborator/entities/collaborator_entity.dart';
 
 abstract class CollaboratorRepository {
   Future<List<Collaborator>> getCollaborators();

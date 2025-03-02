@@ -4,13 +4,16 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: ^3.5.0
+  sdk: '>=3.3.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
 
   kiwi: ^5.0.0
+  sqflite: ^2.4.2
+  path: ^1.9.1
+
 
 dev_dependencies:
   flutter_test:
@@ -18,6 +21,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   build_runner: ^2.4.15
   kiwi_generator: ^4.2.1
+
 
 flutter:
   uses-material-design: true
