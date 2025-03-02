@@ -3,6 +3,7 @@ class CollaboratorModel {
   final String firstName;
   final String lastName;
   final int birthDate;
+  final String? imagePath;
   final List<String> addresses;
 
   CollaboratorModel({
@@ -10,6 +11,7 @@ class CollaboratorModel {
     required this.firstName,
     required this.lastName,
     required this.birthDate,
+    this.imagePath,
     this.addresses = const [],
   });
 
@@ -19,6 +21,7 @@ class CollaboratorModel {
       'firstName': firstName,
       'lastName': lastName,
       'birthDate': birthDate,
+      'imagePath': imagePath,
       'addresses': addresses.join(','),
     };
   }
@@ -29,6 +32,7 @@ class CollaboratorModel {
       firstName: map['firstName'],
       lastName: map['lastName'],
       birthDate: map['birthDate'],
+      imagePath: map['imagePath'],
       addresses: map['addresses'].split(','),
     );
   }

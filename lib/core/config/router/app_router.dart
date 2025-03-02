@@ -8,14 +8,16 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.home,
       builder: ScreenBuilders.homeScreenBuilder,
-    ),
-    GoRoute(
-      path: AppRoutes.collaboratorInformation,
-      builder: ScreenBuilders.collaboratorInformationBuilder,
-    ),
-    GoRoute(
-      path: AppRoutes.collaboratorCreateUpdate,
-      builder: ScreenBuilders.collaboratorCreateUpdateBuilder,
+      routes: [
+        GoRoute(
+          path: AppRoutes.collaboratorInformation,
+          builder: ScreenBuilders.collaboratorInformationBuilder,
+        ),
+        GoRoute(
+          path: AppRoutes.collaboratorCreateUpdate,
+          builder: ScreenBuilders.collaboratorCreateUpdateBuilder,
+        ),
+      ],
     ),
   ],
   errorBuilder: ScreenBuilders.errorScreenBuilder,

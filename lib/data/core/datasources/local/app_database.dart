@@ -35,6 +35,7 @@ class AppDatabase {
         firstName TEXT,
         lastName TEXT,
         birthDate INTEGER,
+        imagePath TEXT,
         addresses TEXT
       )
     ''');

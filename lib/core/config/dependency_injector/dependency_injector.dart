@@ -2,7 +2,9 @@ import 'package:go_work/data/collaborator/adapters/collaborator_adapter.dart';
 import 'package:go_work/data/collaborator/datasources/collaborator_datasource.dart';
 import 'package:go_work/data/collaborator/repositories/collaborator_repository_impl.dart';
 import 'package:go_work/data/core/datasources/local/app_database.dart';
+import 'package:go_work/data/core/datasources/local/file_storage_impl.dart';
 import 'package:go_work/domain/collaborator/repositories/collaborator_repository.dart';
+import 'package:go_work/domain/core/datasourse/local/file_storage.dart';
 
 import 'package:kiwi/kiwi.dart';
 
@@ -24,6 +26,7 @@ abstract class Injector {
 
   // 2. DataSources
   @Register.singleton(CollaboratorDataSource)
+  @Register.singleton(FileStorage, from: FileStorageImpl)
   void _registerDataSources();
 
   // 3. Adapters

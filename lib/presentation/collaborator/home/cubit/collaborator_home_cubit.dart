@@ -1,12 +1,16 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_work/domain/collaborator/repositories/collaborator_repository.dart';
 
 part 'collaborator_home_state.dart';
 
 class CollaboratorHomeCubit extends Cubit<CollaboratorHomeState> {
-  CollaboratorHomeCubit() : super(CollaboratorHomeState());
+  final CollaboratorRepository collaboratorRepository;
+
+  CollaboratorHomeCubit(this.collaboratorRepository) : super(CollaboratorHomeState());
 
   Future<void> loadCollaborators() async {
+    final collaboratorList = await collaboratorRepository.getCollaborators();
     emit(state.copyWith(loading: true)); // Activar el estado de carga
     emit(state.copyWith(loading: false)); // Activar el estado de carga
     try {

@@ -3,15 +3,17 @@ import 'package:go_work/data/collaborator/datasources/collaborator_datasource.da
 import 'package:go_work/data/collaborator/models/collaborator_model.dart';
 import 'package:go_work/domain/collaborator/entities/collaborator_entity.dart';
 import 'package:go_work/domain/collaborator/repositories/collaborator_repository.dart';
+
 class CollaboratorRepositoryImpl implements CollaboratorRepository {
- final CollaboratorDataSource dataSource;
+  final CollaboratorDataSource dataSource;
   final CollaboratorAdapter adapter;
 
   CollaboratorRepositoryImpl(this.adapter, {required this.dataSource});
-@override
+  @override
   Future<List<Collaborator>> getCollaborators() async {
     final collaboratorModels = await dataSource.getCollaborators();
-    return collaboratorModels.map((model) => adapter.toEntity(model)).toList();
+    final collaboratorEntis = collaboratorModels.map((model) => adapter.toEntity(model)).toList();
+    return collaboratorEntis;
   }
 
   @override

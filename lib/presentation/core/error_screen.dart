@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ErrorScreen extends StatelessWidget {
   final String message;
@@ -22,7 +23,7 @@ class ErrorScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () => Navigator.of(context).pop(),
+              onPressed: () => GoRouter.of(context).pop(),
               child: const Text('Volver'),
             ),
           ],

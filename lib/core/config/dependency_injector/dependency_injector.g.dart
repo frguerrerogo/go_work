@@ -16,8 +16,10 @@ class _$Injector extends Injector {
   @override
   void _registerDataSources() {
     final KiwiContainer container = KiwiContainer();
-    container.registerSingleton((c) =>
-        CollaboratorDataSource(databaseHelper: c.resolve<AppDatabase>()));
+    container
+      ..registerSingleton((c) =>
+          CollaboratorDataSource(databaseHelper: c.resolve<AppDatabase>()))
+      ..registerSingleton<FileStorage>((c) => FileStorageImpl());
   }
 
   @override
@@ -38,8 +40,10 @@ class _$Injector extends Injector {
   void _registerCubits() {
     final KiwiContainer container = KiwiContainer();
     container
-      ..registerFactory((c) => CollaboratorHomeCubit())
+      ..registerFactory(
+          (c) => CollaboratorHomeCubit(c.resolve<CollaboratorRepository>()))
       ..registerFactory((c) => CollaboratorInformationCubit())
-      ..registerFactory((c) => CollaboratorCreateUpdateCubit());
+      ..registerFactory((c) => CollaboratorCreateUpdateCubit(
+          c.resolve<FileStorage>(), c.resolve<CollaboratorRepository>()));
   }
 }

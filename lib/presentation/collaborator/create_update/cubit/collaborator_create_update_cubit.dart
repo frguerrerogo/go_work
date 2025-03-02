@@ -1,11 +1,18 @@
+import 'dart:io';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:go_work/domain/collaborator/entities/collaborator_entity.dart';
+import 'package:go_work/domain/collaborator/repositories/collaborator_repository.dart';
+import 'package:go_work/domain/core/datasourse/local/file_storage.dart';
 
 part 'collaborator_create_update_state.dart';
 
 class CollaboratorCreateUpdateCubit extends Cubit<CollaboratorCreateUpdateState> {
-  CollaboratorCreateUpdateCubit() : super(CollaboratorCreateUpdateState());
+  final FileStorage fileStorage;
+  final CollaboratorRepository collaboratorRepository;
+  CollaboratorCreateUpdateCubit(this.fileStorage, this.collaboratorRepository) : super(CollaboratorCreateUpdateState());
 
   Future<void> saveCollaborator({
     required String firstName,
@@ -14,27 +21,40 @@ class CollaboratorCreateUpdateCubit extends Cubit<CollaboratorCreateUpdateState>
     required List<String> addresses,
   }) async {
     emit(state.copyWith(loading: true)); // Activar el estado de carga
+
+    String? imagePath;
+    if (state.image != null) imagePath = await fileStorage.saveImageToStorage(state.image!);
+
     try {
       final collaborator = Collaborator(
-        id: state.collaborator?.id, // Mantén el ID si está editando
+        id: state.collaborator?.id,
         firstName: firstName,
         lastName: lastName,
         birthDate: birthDate,
+        imagePath: imagePath,
         addresses: addresses,
       );
 
-      // if (state.isEditing) {
-      //   await updateCollaboratorUseCase(collaborator);
-      // } else {
-      //   await createCollaboratorUseCase(collaborator);
-      // }
+      if (false) {
+        await collaboratorRepository.updateCollaborator(collaborator);
+      } else {
+        await collaboratorRepository.createCollaborator(collaborator);
+      }
 
-      emit(state.copyWith(loading: false)); // Desactivar el estado de carga
+      emit(state.copyWith(loading: false));
     } catch (e) {
       emit(state.copyWith(
         loading: false,
         errorMessage: 'Error al guardar el colaborador',
-      )); // Error en la operación
+      ));
     }
+  }
+
+  Future<void> pickImage(File image) async {
+    emit(state.copyWith(image: image));
+  }
+
+  Future<void> updateBirthDate(DateTime? birthDate) async {
+    emit(state.copyWith(birthDate: birthDate));
   }
 }

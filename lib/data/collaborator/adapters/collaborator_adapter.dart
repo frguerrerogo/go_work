@@ -10,6 +10,7 @@ class CollaboratorAdapter implements Adapter<Collaborator, CollaboratorModel> {
       firstName: entity.firstName,
       lastName: entity.lastName,
       birthDate: entity.birthDate.millisecondsSinceEpoch ~/ 1000,
+      imagePath: entity.imagePath,
       addresses: entity.addresses,
     );
   }
@@ -21,6 +22,7 @@ class CollaboratorAdapter implements Adapter<Collaborator, CollaboratorModel> {
       firstName: model.firstName,
       lastName: model.lastName,
       birthDate: DateTime.fromMillisecondsSinceEpoch(model.birthDate * 1000),
+      imagePath: model.imagePath,
       addresses: model.addresses,
     );
   }

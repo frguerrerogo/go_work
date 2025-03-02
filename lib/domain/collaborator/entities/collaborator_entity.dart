@@ -3,6 +3,7 @@ class Collaborator {
   final String firstName;
   final String lastName;
   final DateTime birthDate;
+  final String? imagePath;
   final List<String> addresses;
 
   Collaborator({
@@ -10,11 +11,7 @@ class Collaborator {
     required this.firstName,
     required this.lastName,
     required this.birthDate,
+    this.imagePath,
     this.addresses = const [],
   });
-
-  @override
-  String toString() {
-    return 'Collaborator(id: $id, firstName: $firstName, lastName: $lastName, birthDate: $birthDate, addresses: $addresses)';
-  }
 }
