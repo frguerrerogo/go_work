@@ -3,18 +3,20 @@ import 'package:go_work/data/collaborator/datasources/collaborator_datasource.da
 import 'package:go_work/data/collaborator/repositories/collaborator_repository_impl.dart';
 import 'package:go_work/data/core/datasources/local/app_database.dart';
 import 'package:go_work/domain/collaborator/repositories/collaborator_repository.dart';
+
 import 'package:kiwi/kiwi.dart';
+
+import 'package:go_work/presentation/core/utils/cubits/index.dart';
 
 part 'dependency_injector.g.dart';
 
-abstract class Injector  {
+abstract class Injector {
   static final KiwiContainer container = KiwiContainer();
 
- static void setup() {
-  final injector = _$Injector();
-   injector._configure();
+  static void setup() {
+    final injector = _$Injector();
+    injector._configure();
   }
-
 
   // 1. Base de Datos
   @Register.singleton(AppDatabase)
@@ -33,7 +35,9 @@ abstract class Injector  {
   void _registerRepositories();
 
   // 5. Cubits
-  // @Register.factory(CollaboratorCubit)
+  @Register.factory(CollaboratorHomeCubit)
+  @Register.factory(CollaboratorInformationCubit)
+  @Register.factory(CollaboratorCreateUpdateCubit)
   void _registerCubits();
 
   // Método principal que llama a todos los registros
@@ -45,4 +49,3 @@ abstract class Injector  {
     _registerCubits();
   }
 }
-

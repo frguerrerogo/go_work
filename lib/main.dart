@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_work/core/config/router/app_router.dart';
 import 'package:go_work/core/config/dependency_injector/dependency_injector.dart';
 import 'package:go_work/data/core/datasources/local/app_database.dart';
 
@@ -14,14 +15,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp.router(
+      title: 'GoWork',
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
-
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      //theme: appTheme.getTheme(),
     );
   }
 }

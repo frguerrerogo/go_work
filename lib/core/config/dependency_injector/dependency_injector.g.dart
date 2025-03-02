@@ -35,5 +35,11 @@ class _$Injector extends Injector {
   }
 
   @override
-  void _registerCubits() {}
+  void _registerCubits() {
+    final KiwiContainer container = KiwiContainer();
+    container
+      ..registerFactory((c) => CollaboratorHomeCubit())
+      ..registerFactory((c) => CollaboratorInformationCubit())
+      ..registerFactory((c) => CollaboratorCreateUpdateCubit());
+  }
 }
