@@ -20,7 +20,7 @@ class CollaboratorCreateUpdateCubit extends Cubit<CollaboratorCreateUpdateState>
     required DateTime birthDate,
     required List<String> addresses,
   }) async {
-    emit(state.copyWith(loading: true)); // Activar el estado de carga
+    emit(state.copyWith(loading: true));
 
     String? imagePath;
     if (state.image != null) imagePath = await fileStorage.saveImageToStorage(state.image!);
@@ -35,17 +35,17 @@ class CollaboratorCreateUpdateCubit extends Cubit<CollaboratorCreateUpdateState>
         addresses: addresses,
       );
 
-      if (false) {
+      if (state.isEditing) {
         await collaboratorRepository.updateCollaborator(collaborator);
       } else {
         await collaboratorRepository.createCollaborator(collaborator);
       }
-
+      await Future.delayed(Duration(seconds: 2));
       emit(state.copyWith(loading: false));
     } catch (e) {
       emit(state.copyWith(
         loading: false,
-        errorMessage: 'Error al guardar el colaborador',
+        errorMessage: 'Error: $e',
       ));
     }
   }

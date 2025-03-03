@@ -64,80 +64,95 @@ class CollaboratorCreateUpdateScreen extends StatelessWidget {
         child: BlocBuilder<CollaboratorCreateUpdateCubit, CollaboratorCreateUpdateState>(
           builder: (context, state) {
             final isEditing = state.isEditing;
+            if (state.loading) {
+              return Center(child: CircularProgressIndicator());
+            } else {
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Form(
+                  key: formKey,
+                  child: ListView(
+                    children: [
+                      // Image;
+                      if (state.image != null)
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.file(
+                            state.image!,
+                            width: 200,
+                            height: 400,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ElevatedButtonIconTextCustom(
+                        text: 'Seleccionar imagen',
+                        icon: Icons.photo_camera_front_rounded,
+                        onPressed: () async {
+                          File? pickedFile = await AppUtils.pickImage();
 
-            return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Form(
-                key: formKey,
-                child: ListView(
-                  children: [
-                    // Image;
-                    if (state.image != null) Image.file(state.image!, width: 200, height: 200),
-                    ElevatedButtonIconTextCustom(
-                      text: 'Seleccionar imagen',
-                      icon: Icons.photo_camera_front_rounded,
-                      onPressed: () async {
-                        File? pickedFile = await AppUtils.pickImage();
+                          if (pickedFile != null) {
+                            cubit.pickImage(pickedFile);
+                          }
+                        },
+                      ),
+                      //Name
+                      AnimatedTextFieldCustom(
+                        controller: nameController,
+                        labelText: 'Nombre',
+                        icon: Icons.person,
+                      ),
 
-                        if (pickedFile != null) {
-                          cubit.pickImage(pickedFile);
-                        }
-                      },
-                    ),
-                    //Name
-                    AnimatedTextFieldCustom(
-                      controller: nameController,
-                      labelText: 'Nombre',
-                      icon: Icons.person,
-                    ),
+                      //LastName
+                      AnimatedTextFieldCustom(
+                        controller: lastNameController,
+                        labelText: 'Apellido',
+                        icon: Icons.person,
+                      ),
 
-                    //LastName
-                    AnimatedTextFieldCustom(
-                      controller: lastNameController,
-                      labelText: 'Apellido',
-                      icon: Icons.person,
-                    ),
+                      //BirthDate
+                      ElevatedButtonIconTextCustom(
+                        text: state.birthDate == null
+                            ? 'Selecciona tu fecha de cumpleaños'
+                            : 'Fecha: ${DateFormat('dd/MM/yyyy').format(state.birthDate!)}',
+                        icon: Icons.calendar_month_sharp,
+                        onPressed: () async {
+                          birthDate = await AppUtils.selectDate(context);
+                          cubit.updateBirthDate(birthDate);
+                        },
+                      ),
 
-                    //BirthDate
-                    ElevatedButtonIconTextCustom(
-                      text: state.birthDate == null
-                          ? 'Selecciona tu fecha de cumpleaños'
-                          : 'Fecha: ${DateFormat('dd/MM/yyyy').format(state.birthDate!)}',
-                      icon: Icons.calendar_month_sharp,
-                      onPressed: () async {
-                        birthDate = await AppUtils.selectDate(context);
-                        cubit.updateBirthDate(birthDate);
-                      },
-                    ),
+                      //addresses
+                      AddTextListWidget(
+                        title: 'Direcciones',
+                        textList: [],
+                        buttonText: 'Añadir direccion',
+                        hintText: 'Direccion',
+                        onChanged: (value) => addresses = value,
+                      ),
 
-                    //addresses
-                    AddTextListWidget(
-                      title: 'Direcciones',
-                      textList: [],
-                      buttonText: 'Añadir direccion',
-                      hintText: 'Direccion',
-                      onChanged: (value) => addresses = value,
-                    ),
+                      //Button
+                      Builder(builder: (context) {
+                        return ElevatedButtonCustom(
+                          text: isEditing ? 'Actualizar' : 'Crear',
+                          onPressed: () async {
+                            final check = checkForm();
+                            if (check) {
+                              await cubit.saveCollaborator(
+                                  firstName: nameController.text,
+                                  lastName: lastNameController.text,
+                                  birthDate: birthDate!,
+                                  addresses: addresses);
 
-                    //Button
-                    ElevatedButtonCustom(
-                      text: isEditing ? 'Actualizar' : 'Crear',
-                      onPressed: () async {
-                        final check = checkForm();
-                        if (check) {
-                          await cubit.saveCollaborator(
-                              firstName: nameController.text,
-                              lastName: lastNameController.text,
-                              birthDate: birthDate!,
-                              addresses: addresses);
-                          GoRouter.of(context).pop();
-                        }
-                      },
-                    ),
-                  ],
+                              if (context.mounted) GoRouter.of(context).pop(true);
+                            }
+                          },
+                        );
+                      }),
+                    ],
+                  ),
                 ),
-              ),
-            );
+              );
+            }
           },
         ),
       ),

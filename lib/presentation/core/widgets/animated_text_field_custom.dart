@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 class AnimatedTextFieldCustom extends StatefulWidget {
   final TextEditingController controller;
+  final Function(String)? onChanged;
   final String labelText;
   final IconData icon;
 
   const AnimatedTextFieldCustom({
     required this.controller,
+    this.onChanged,
     required this.labelText,
     required this.icon,
     super.key,
@@ -55,6 +57,7 @@ class _AnimatedTextFieldCustomState extends State<AnimatedTextFieldCustom> {
                       }
                       return null;
                     },
+                    onChanged: widget.onChanged,
                     style: TextStyle(color: Colors.black87, fontSize: 16),
                   ),
                 ),

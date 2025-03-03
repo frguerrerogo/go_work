@@ -1,10 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:go_work/core/config/app_constants.dart';
+import 'package:go_work/core/config/app_text_styles.dart';
 
 import 'package:go_work/core/config/dependency_injector/dependency_injector.dart';
 import 'package:go_work/core/config/router/app_routes.dart';
 
+import '../../../core/widgets/widgets.dart';
 import '../../utils/screens/index.dart';
 import '../../utils/cubits/index.dart';
 
@@ -15,16 +20,25 @@ class CollaboratorHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final searchController = TextEditingController();
+
     cubit.loadCollaborators();
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Colaboradores'),
+        title: Text(
+          'GoWork',
+          style: AppTextStyles.titleLarge(context),
+        ),
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              // Lógica de búsqueda
-            },
+            icon: Icon(
+              Icons.search,
+              color: colorScheme.primary,
+              size: 30,
+            ),
+            onPressed: () => cubit.isSearch(),
           ),
         ],
       ),
@@ -35,40 +49,76 @@ class CollaboratorHomeScreen extends StatelessWidget {
             if (state.loading) {
               return Center(child: CircularProgressIndicator());
             } else {
-              // Aquí puedes mostrar la lista de colaboradores
-              return ListView.builder(
-                itemCount: 10, // Cambia esto por la lista real de colaboradores
-                itemBuilder: (context, index) {
-                  return Card(
-                    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    //Search
+                    if (state.isSearch)
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.easeInOut,
+                        margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                        height: state.isSearch ? 71.0 : 0.0,
+                        child: AnimatedTextFieldCustom(
+                          controller: searchController,
+                          icon: Icons.search,
+                          labelText: 'Buscar',
+                          onChanged: (value) {
+                            cubit.searchCollaborators(value);
+                          },
+                        ),
                       ),
-                      title: Text('Colaborador $index'),
-                      subtitle: Text('Puesto $index'),
-                      trailing: Icon(Icons.location_on, color: Colors.blue),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => CollaboratorInformationScreen(
-                              collaboratorId: 1,
+                    // Lista de colaboradores
+                    ListView.builder(
+                      shrinkWrap: true, // Evita problemas de alto infinito
+                      physics: NeverScrollableScrollPhysics(), // Desactiva el desplazamiento interno
+                      itemCount: state.collaborators.length,
+                      itemBuilder: (context, index) {
+                        final collaborator = state.collaborators[index];
+                        return Card(
+                          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundImage: collaborator.imagePath != null
+                                  ? FileImage(File(collaborator.imagePath!)) as ImageProvider
+                                  : AssetImage(AppConstants.iconDefaultAvatar) as ImageProvider,
                             ),
+                            title: Text(
+                              collaborator.firstName,
+                              style: AppTextStyles.titleSmall(context),
+                            ),
+                            subtitle: Text(
+                              collaborator.lastName,
+                              style: AppTextStyles.bodyText(context),
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CollaboratorInformationScreen(
+                                    collaboratorId: collaborator.id!,
+                                  ),
+                                ),
+                              );
+                            },
                           ),
                         );
                       },
                     ),
-                  );
-                },
+                  ],
+                ),
               );
             }
           },
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.go(AppRoutes.collaboratorCreateUpdate);
+        onPressed: () async {
+          final result = await GoRouter.of(context).push(AppRoutes.collaboratorCreateUpdate);
+
+          if (result == true) {
+            cubit.loadCollaborators();
+          }
         },
         child: Icon(Icons.add),
       ),

@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
 class AppTextStyles {
-  // Estilo para títulos medianos
+  static TextStyle titleLarge(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return TextStyle(
+      fontSize: 32,
+      fontWeight: FontWeight.bold,
+      color: colorScheme.primary,
+      letterSpacing: 1.5,
+    );
+  }
+
   static TextStyle titleMedium(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     return TextStyle(
@@ -12,49 +21,26 @@ class AppTextStyles {
     );
   }
 
+  static TextStyle titleSmall(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return TextStyle(
+      fontSize: 18,
+      fontWeight: FontWeight.w500,
+      color: colorScheme.primary,
+      letterSpacing: 1.0,
+    );
+  }
+
+  static TextStyle bodyText(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    return TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.normal,
+      color: colorScheme.onSurface, // Usa el color de texto sobre el fondo
+      letterSpacing: 0.5,
+    );
+  }
   // // Estilo para títulos grandes
-  // static TextStyle titleLarge(BuildContext context) {
-  //   final colorScheme = Theme.of(context).colorScheme;
-  //   return TextStyle(
-  //     fontSize: 32,
-  //     fontWeight: FontWeight.bold,
-  //     color: colorScheme.primary, // Usa el color primario del tema
-  //     letterSpacing: 1.5,
-  //   );
-  // }
-
-  // // Estilo para títulos medianos
-  // static TextStyle titleMedium(BuildContext context) {
-  //   final colorScheme = Theme.of(context).colorScheme;
-  //   return TextStyle(
-  //     fontSize: 20,
-  //     fontWeight: FontWeight.bold,
-  //     color: colorScheme.primary,
-  //     letterSpacing: 1.2,
-  //   );
-  // }
-
-  // Estilo para títulos pequeños
-  // static TextStyle titleSmall(BuildContext context) {
-  //   final colorScheme = Theme.of(context).colorScheme;
-  //   return TextStyle(
-  //     fontSize: 18,
-  //     fontWeight: FontWeight.w500,
-  //     color: colorScheme.primary, // Usa el color primario del tema
-  //     letterSpacing: 1.0,
-  //   );
-  // }
-
-  // // Estilo para texto normal
-  // static TextStyle bodyText(BuildContext context) {
-  //   final colorScheme = Theme.of(context).colorScheme;
-  //   return TextStyle(
-  //     fontSize: 16,
-  //     fontWeight: FontWeight.normal,
-  //     color: colorScheme.onSurface, // Usa el color de texto sobre el fondo
-  //     letterSpacing: 0.5,
-  //   );
-  // }
 
   // // Estilo para texto en negrita
   // static TextStyle bodyTextBold(BuildContext context) {
