@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 class AppUtils {
   static int? validateInt(String? value) {
@@ -33,8 +34,10 @@ class AppUtils {
       firstDate: DateTime(1900),
       lastDate: DateTime.now(),
     );
-    if (picked != null) {
-      return picked;
-    }
+    return picked;
+  }
+
+  static String dateFormat(DateTime date) {
+    return DateFormat('dd/MM/yyyy').format(date);
   }
 }

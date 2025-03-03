@@ -1,5 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_work/core/config/app_constants.dart';
+import 'package:go_work/core/config/app_text_styles.dart';
+import 'package:go_work/core/config/app_utils.dart';
 
 import 'package:go_work/core/config/dependency_injector/dependency_injector.dart';
 
@@ -14,9 +19,16 @@ class CollaboratorInformationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    cubit.loadCollaboratorInfo(collaboratorId.toString());
     return Scaffold(
       appBar: AppBar(
-        title: Text('Información del Colaborador'),
+        centerTitle: true,
+        title: Text(
+          'Colaborador',
+          style: AppTextStyles.titleMedium(context),
+        ),
       ),
       body: BlocProvider(
         create: (context) => cubit,
@@ -28,21 +40,71 @@ class CollaboratorInformationScreen extends StatelessWidget {
               final collaborator = state.collaborator!;
               return Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Nombre: ${collaborator.firstName} ${collaborator.lastName}', style: TextStyle(fontSize: 18)),
-                    SizedBox(height: 8),
-                    Text('Fecha de Nacimiento: ${collaborator.birthDate.toLocal()}', style: TextStyle(fontSize: 18)),
-                    SizedBox(height: 16),
-                    Text('Ubicaciones:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                    ...collaborator.addresses.map((address) {
-                      return ListTile(
-                        leading: Icon(Icons.location_on, color: Colors.blue),
-                        title: Text(address),
-                      );
-                    }).toList(),
-                  ],
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      //Image
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: collaborator.imagePath != null
+                            ? Image.file(
+                                File(collaborator.imagePath!),
+                                width: 400,
+                                height: 400,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.asset(
+                                AppConstants.iconDefaultAvatar,
+                                width: 300,
+                                height: 300,
+                                fit: BoxFit.cover,
+                              ),
+                      ),
+                      SizedBox(height: 10),
+                      //Full name
+                      Text(
+                        '${collaborator.firstName} ${collaborator.lastName}',
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTextStyles.titleLarge(context),
+                      ),
+                      SizedBox(height: 10),
+                      //BirthDate
+
+                      Text(
+                        'Fecha de Nacimiento: ${AppUtils.dateFormat(collaborator.birthDate)}', // Formato de fecha sin hora
+                        style: AppTextStyles.bodyText(context),
+                      ),
+                      SizedBox(height: 10),
+                      // Direcciones
+                      ExpansionTile(
+                        title: Text(
+                          'Direcciones',
+                          style: AppTextStyles.titleSmall(context),
+                        ),
+                        tilePadding: EdgeInsets.zero, // Elimina el padding interno
+                        childrenPadding: EdgeInsets.zero, // Evita espaciado extra en los hijos
+                        collapsedBackgroundColor: Colors.transparent, // Evita resaltado al estar cerrado
+                        backgroundColor: Colors.transparent, // Evita resaltado al estar expandido
+                        children: collaborator.addresses.map((address) {
+                          return Card(
+                            margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                            elevation: 2,
+                            child: ListTile(
+                              leading: Icon(Icons.location_city, color: colorScheme.onPrimaryContainer, size: 24),
+                              title: Text(
+                                address,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: AppTextStyles.bodyText(context),
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      )
+                    ],
+                  ),
                 ),
               );
             } else if (state.errorMessage != null) {

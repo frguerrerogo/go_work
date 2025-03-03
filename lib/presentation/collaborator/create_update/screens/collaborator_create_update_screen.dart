@@ -54,6 +54,7 @@ class CollaboratorCreateUpdateScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(
           collaborator == null ? 'Crear Colaborador' : 'Editar Colaborador',
           style: AppTextStyles.titleMedium(context),
@@ -113,7 +114,7 @@ class CollaboratorCreateUpdateScreen extends StatelessWidget {
                       ElevatedButtonIconTextCustom(
                         text: state.birthDate == null
                             ? 'Selecciona tu fecha de cumpleaños'
-                            : 'Fecha: ${DateFormat('dd/MM/yyyy').format(state.birthDate!)}',
+                            : 'Fecha: ${AppUtils.dateFormat(state.birthDate!)}',
                         icon: Icons.calendar_month_sharp,
                         onPressed: () async {
                           birthDate = await AppUtils.selectDate(context);

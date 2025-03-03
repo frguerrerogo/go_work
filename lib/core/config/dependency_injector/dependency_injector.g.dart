@@ -42,7 +42,8 @@ class _$Injector extends Injector {
     container
       ..registerFactory(
           (c) => CollaboratorHomeCubit(c.resolve<CollaboratorRepository>()))
-      ..registerFactory((c) => CollaboratorInformationCubit())
+      ..registerFactory((c) =>
+          CollaboratorInformationCubit(c.resolve<CollaboratorRepository>()))
       ..registerFactory((c) => CollaboratorCreateUpdateCubit(
           c.resolve<FileStorage>(), c.resolve<CollaboratorRepository>()));
   }

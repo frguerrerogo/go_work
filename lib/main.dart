@@ -9,8 +9,8 @@ import 'package:intl/intl.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initializeDateFormatting('es_ES', null); // Inicializa los datos de localización
-  Intl.defaultLocale = 'es_ES'; // Establece el idioma predeterminado
+  await initializeDateFormatting('es_ES', null);
+  Intl.defaultLocale = 'es_ES';
   await AppDatabase().database;
   Injector.setup();
   runApp(const MainApp());
@@ -34,8 +34,8 @@ class MainApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: [
-        Locale('es', 'ES'), // Español
-        Locale('en', 'US'), // Inglés (como respaldo)
+        Locale('es', 'ES'),
+        Locale('en', 'US'),
       ],
     );
   }

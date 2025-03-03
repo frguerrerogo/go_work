@@ -70,8 +70,8 @@ class CollaboratorHomeScreen extends StatelessWidget {
                       ),
                     // Lista de colaboradores
                     ListView.builder(
-                      shrinkWrap: true, // Evita problemas de alto infinito
-                      physics: NeverScrollableScrollPhysics(), // Desactiva el desplazamiento interno
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       itemCount: state.collaborators.length,
                       itemBuilder: (context, index) {
                         final collaborator = state.collaborators[index];
@@ -95,9 +95,7 @@ class CollaboratorHomeScreen extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => CollaboratorInformationScreen(
-                                    collaboratorId: collaborator.id!,
-                                  ),
+                                  builder: (context) => CollaboratorInformationScreen(collaboratorId: collaborator.id!),
                                 ),
                               );
                             },

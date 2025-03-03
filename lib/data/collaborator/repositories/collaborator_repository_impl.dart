@@ -17,7 +17,7 @@ class CollaboratorRepositoryImpl implements CollaboratorRepository {
   }
 
   @override
-  Future<Collaborator> getCollaboratorById(String id) async {
+  Future<Collaborator?> getCollaboratorById(String id) async {
     final collaboratorModel = await dataSource.getCollaboratorById(int.parse(id));
     if (collaboratorModel != null) {
       return adapter.toEntity(collaboratorModel);
