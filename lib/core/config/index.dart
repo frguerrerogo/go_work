@@ -4,4 +4,4 @@ export 'app_theme.dart';
 export 'app_utils.dart';
 export 'router/app_routes.dart';
 export 'router/app_router.dart';
-export 'dependency_injector/dependency_injector.dart';
+export 'di/dependency_injector.dart';
