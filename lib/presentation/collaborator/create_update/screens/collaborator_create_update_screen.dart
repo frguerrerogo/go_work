@@ -38,8 +38,7 @@ class CollaboratorCreateUpdateScreen extends StatelessWidget {
       if (formKey.currentState!.validate()) {
         if (birthDate == null) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-                content: Text('Por favor selecciona una fecha de cumpleaños')),
+            SnackBar(content: Text('Por favor selecciona una fecha de cumpleaños')),
           );
           return false;
         }
@@ -82,8 +81,7 @@ class CollaboratorCreateUpdateScreen extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (context) => cubit,
-        child: BlocBuilder<CollaboratorCreateUpdateCubit,
-            CollaboratorCreateUpdateState>(
+        child: BlocBuilder<CollaboratorCreateUpdateCubit, CollaboratorCreateUpdateState>(
           builder: (context, state) {
             final isEditing = state.isEditing;
             if (state.loading) {
@@ -144,7 +142,7 @@ class CollaboratorCreateUpdateScreen extends StatelessWidget {
                       ),
 
                       //addresses
-                      AddTextListWidget(
+                      AddTextListCustom(
                         title: 'Direcciones',
                         textList: addresses,
                         buttonText: 'Añadir direccion',

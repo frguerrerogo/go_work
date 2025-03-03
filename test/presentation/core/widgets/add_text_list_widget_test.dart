@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_work/presentation/core/widgets/index.dart';
 
 void main() {
-  group('AddTextListWidget Tests', () {
+  group('AddTextListCustom Tests', () {
     testWidgets('render the widget with initial values', (WidgetTester tester) async {
       const title = 'Add Items';
       const hintText = 'Enter an item';
@@ -13,7 +13,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AddTextListWidget(
+            body: AddTextListCustom(
               textList: initialList,
               title: title,
               hintText: hintText,
@@ -45,7 +45,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AddTextListWidget(
+            body: AddTextListCustom(
               textList: initialList,
               title: title,
               hintText: hintText,
@@ -80,7 +80,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: AddTextListWidget(
+            body: AddTextListCustom(
               textList: initialList,
               title: title,
               hintText: hintText,

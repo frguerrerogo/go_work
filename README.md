@@ -225,7 +225,7 @@ test/
 │   │   │   │   └── collaborator_information_cubit_test.dart
 │   ├── core/
 │   │   ├── widgets/
-│   │   │   │   └── add_text_list_widget_test.dart
+│   │   │   │   └── add_text_list_custom_test.dart.dart
 │   │   │   │   └── animated_text_field_custom_test.dart
 │   │   │   │   └── elevated_button_custom_test.dart
 │   │   │   │   └── elevated_button_icon_text_custom_test.dart

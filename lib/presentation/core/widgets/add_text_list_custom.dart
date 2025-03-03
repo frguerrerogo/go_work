@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class AddTextListWidget extends StatefulWidget {
+class AddTextListCustom extends StatefulWidget {
   final List<String> textList;
   final String title;
   final String hintText;
   final String buttonText;
   final ValueChanged<List<String>> onChanged;
 
-  const AddTextListWidget({
+  const AddTextListCustom({
     super.key,
     required this.textList,
     required this.title,
@@ -17,10 +17,10 @@ class AddTextListWidget extends StatefulWidget {
   });
 
   @override
-  State<AddTextListWidget> createState() => _AddTextListWidgetState();
+  State<AddTextListCustom> createState() => _AddTextListCustomState();
 }
 
-class _AddTextListWidgetState extends State<AddTextListWidget> {
+class _AddTextListCustomState extends State<AddTextListCustom> {
   final TextEditingController _controller = TextEditingController();
   late List<String> _mutableTextList;
   @override
@@ -82,8 +82,7 @@ class _AddTextListWidgetState extends State<AddTextListWidget> {
                     width: 1,
                   ),
                 ),
-                contentPadding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
               ),
               style: const TextStyle(fontSize: 14),
               textAlignVertical: TextAlignVertical.center,
