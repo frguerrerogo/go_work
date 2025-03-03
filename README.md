@@ -41,7 +41,7 @@ GoWork es una aplicación móvil desarrollada en Flutter diseñada para facilita
 ### Requisitos previos
 
 - Flutter 3.29.0
-- Dart 3+
+- Dart 3.7.0
 - Dependencias instaladas con `flutter pub get`
 
 ### Instalación
