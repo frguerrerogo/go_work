@@ -9,7 +9,8 @@ part 'collaborator_home_state.dart';
 class CollaboratorHomeCubit extends Cubit<CollaboratorHomeState> {
   final CollaboratorRepository collaboratorRepository;
 
-  CollaboratorHomeCubit(this.collaboratorRepository) : super(CollaboratorHomeState());
+  CollaboratorHomeCubit(this.collaboratorRepository)
+      : super(CollaboratorHomeState());
 
   Future<void> loadCollaborators() async {
     emit(state.copyWith(loading: true));
@@ -41,7 +42,8 @@ class CollaboratorHomeCubit extends Cubit<CollaboratorHomeState> {
       collaborators = state.collaboratorsAux;
     } else {
       collaborators = state.collaboratorsAux.where((collaborator) {
-        final fullName = '${collaborator.firstName} ${collaborator.lastName}'.toLowerCase();
+        final fullName =
+            '${collaborator.firstName} ${collaborator.lastName}'.toLowerCase();
         return fullName.contains(searchQuery.toLowerCase());
       }).toList();
     }

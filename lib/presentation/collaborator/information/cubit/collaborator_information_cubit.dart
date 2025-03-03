@@ -8,12 +8,14 @@ part 'collaborator_information_state.dart';
 
 class CollaboratorInformationCubit extends Cubit<CollaboratorInformationState> {
   final CollaboratorRepository collaboratorRepository;
-  CollaboratorInformationCubit(this.collaboratorRepository) : super(CollaboratorInformationState());
+  CollaboratorInformationCubit(this.collaboratorRepository)
+      : super(CollaboratorInformationState());
 
   Future<void> loadCollaboratorInfo(String collaboratorId) async {
     emit(state.copyWith(loading: true));
     try {
-      final collaborator = await collaboratorRepository.getCollaboratorById(collaboratorId);
+      final collaborator =
+          await collaboratorRepository.getCollaboratorById(collaboratorId);
       if (collaborator != null) {
         emit(state.copyWith(
           loading: false,

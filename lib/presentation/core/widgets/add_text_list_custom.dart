@@ -82,7 +82,8 @@ class _AddTextListWidgetState extends State<AddTextListWidget> {
                     width: 1,
                   ),
                 ),
-                contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
               ),
               style: const TextStyle(fontSize: 14),
               textAlignVertical: TextAlignVertical.center,

@@ -81,16 +81,22 @@ class _CollaboratorHomeScreenState extends State<CollaboratorHomeScreen> {
                       itemBuilder: (context, index) {
                         final collaborator = state.collaborators[index];
                         return Card(
-                          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          margin:
+                              EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Flexible(
                                 child: ListTile(
                                   leading: CircleAvatar(
-                                    backgroundImage: collaborator.imagePath != null
-                                        ? FileImage(File(collaborator.imagePath!)) as ImageProvider
-                                        : AssetImage(AppConstants.iconDefaultAvatar) as ImageProvider,
+                                    backgroundImage: collaborator.imagePath !=
+                                            null
+                                        ? FileImage(
+                                                File(collaborator.imagePath!))
+                                            as ImageProvider
+                                        : AssetImage(
+                                                AppConstants.iconDefaultAvatar)
+                                            as ImageProvider,
                                   ),
                                   title: Text(
                                     collaborator.firstName,
@@ -101,7 +107,8 @@ class _CollaboratorHomeScreenState extends State<CollaboratorHomeScreen> {
                                     style: AppTextStyles.bodyText(context),
                                   ),
                                   onTap: () => GoRouter.of(context).push(
-                                    AppRoutes.collaboratorInformation.replaceAll(
+                                    AppRoutes.collaboratorInformation
+                                        .replaceAll(
                                       ':collaboratorId',
                                       collaborator.id.toString(),
                                     ),
@@ -118,7 +125,8 @@ class _CollaboratorHomeScreenState extends State<CollaboratorHomeScreen> {
                                           AppRoutes.collaboratorCreateUpdate,
                                           extra: collaborator,
                                         )
-                                        .then((value) => cubit.loadCollaborators()),
+                                        .then((value) =>
+                                            cubit.loadCollaborators()),
                                     icon: Icons.edit,
                                     background: false,
                                   ),
@@ -138,7 +146,9 @@ class _CollaboratorHomeScreenState extends State<CollaboratorHomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          GoRouter.of(context).push(AppRoutes.collaboratorCreateUpdate).then((value) => cubit.loadCollaborators());
+          GoRouter.of(context)
+              .push(AppRoutes.collaboratorCreateUpdate)
+              .then((value) => cubit.loadCollaborators());
         },
         child: Icon(Icons.add),
       ),

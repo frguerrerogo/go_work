@@ -22,7 +22,8 @@ class AppUtils {
 
   static Future<File?> pickImage() async {
     ImagePicker imagePicker = ImagePicker();
-    XFile? pickedFile = await imagePicker.pickImage(source: ImageSource.gallery);
+    XFile? pickedFile =
+        await imagePicker.pickImage(source: ImageSource.gallery);
     if (pickedFile == null) return null;
     return File(pickedFile.path);
   }

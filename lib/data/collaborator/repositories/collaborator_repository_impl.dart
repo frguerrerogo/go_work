@@ -11,13 +11,15 @@ class CollaboratorRepositoryImpl implements CollaboratorRepository {
   @override
   Future<List<Collaborator>> getCollaborators() async {
     final collaboratorModels = await dataSource.getCollaborators();
-    final collaboratorEntis = collaboratorModels.map((model) => adapter.toEntity(model)).toList();
+    final collaboratorEntis =
+        collaboratorModels.map((model) => adapter.toEntity(model)).toList();
     return collaboratorEntis;
   }
 
   @override
   Future<Collaborator?> getCollaboratorById(String id) async {
-    final collaboratorModel = await dataSource.getCollaboratorById(int.parse(id));
+    final collaboratorModel =
+        await dataSource.getCollaboratorById(int.parse(id));
     if (collaboratorModel != null) {
       return adapter.toEntity(collaboratorModel);
     }

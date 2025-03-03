@@ -9,10 +9,12 @@ import 'package:go_work/domain/collaborator/repositories/collaborator_repository
 
 part 'collaborator_create_update_state.dart';
 
-class CollaboratorCreateUpdateCubit extends Cubit<CollaboratorCreateUpdateState> {
+class CollaboratorCreateUpdateCubit
+    extends Cubit<CollaboratorCreateUpdateState> {
   final FileStorage fileStorage;
   final CollaboratorRepository collaboratorRepository;
-  CollaboratorCreateUpdateCubit(this.fileStorage, this.collaboratorRepository) : super(CollaboratorCreateUpdateState());
+  CollaboratorCreateUpdateCubit(this.fileStorage, this.collaboratorRepository)
+      : super(CollaboratorCreateUpdateState());
 
   Future<void> saveCollaborator({
     required String firstName,
@@ -23,7 +25,8 @@ class CollaboratorCreateUpdateCubit extends Cubit<CollaboratorCreateUpdateState>
     emit(state.copyWith(loading: true));
 
     String? imagePath;
-    if (state.image != null) imagePath = await fileStorage.saveImageToStorage(state.image!);
+    if (state.image != null)
+      imagePath = await fileStorage.saveImageToStorage(state.image!);
 
     try {
       final collaborator = Collaborator(
@@ -53,7 +56,8 @@ class CollaboratorCreateUpdateCubit extends Cubit<CollaboratorCreateUpdateState>
     emit(state.copyWith(
       collaborator: collaborator,
       isEditing: true,
-      image: collaborator.imagePath != null ? File(collaborator.imagePath!) : null,
+      image:
+          collaborator.imagePath != null ? File(collaborator.imagePath!) : null,
       birthDate: collaborator.birthDate,
     ));
   }

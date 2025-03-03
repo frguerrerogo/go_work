@@ -15,7 +15,8 @@ class AnimatedTextFieldCustom extends StatefulWidget {
   });
 
   @override
-  State<AnimatedTextFieldCustom> createState() => _AnimatedTextFieldCustomState();
+  State<AnimatedTextFieldCustom> createState() =>
+      _AnimatedTextFieldCustomState();
 }
 
 class _AnimatedTextFieldCustomState extends State<AnimatedTextFieldCustom> {
@@ -38,7 +39,8 @@ class _AnimatedTextFieldCustomState extends State<AnimatedTextFieldCustom> {
           children: [
             Row(
               children: [
-                Icon(widget.icon, color: _isFocused ? colorScheme.primary : Colors.grey),
+                Icon(widget.icon,
+                    color: _isFocused ? colorScheme.primary : Colors.grey),
                 SizedBox(width: 8),
                 Expanded(
                   child: TextFormField(

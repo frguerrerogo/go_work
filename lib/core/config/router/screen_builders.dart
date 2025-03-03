@@ -15,16 +15,20 @@ class ScreenBuilders {
     return CollaboratorHomeScreen();
   }
 
-  static Widget collaboratorInformationBuilder(BuildContext context, GoRouterState state) {
-    final collaboratorId = AppUtils.validateInt(state.pathParameters['collaboratorId']);
+  static Widget collaboratorInformationBuilder(
+      BuildContext context, GoRouterState state) {
+    final collaboratorId =
+        AppUtils.validateInt(state.pathParameters['collaboratorId']);
     if (collaboratorId == null) {
       return const ErrorScreen(message: 'ID de colaborador inválido');
     }
     return CollaboratorInformationScreen(collaboratorId: collaboratorId);
   }
 
-  static Widget collaboratorCreateUpdateBuilder(BuildContext context, GoRouterState state) {
-    final collaborator = state.extra is Collaborator ? state.extra as Collaborator : null;
+  static Widget collaboratorCreateUpdateBuilder(
+      BuildContext context, GoRouterState state) {
+    final collaborator =
+        state.extra is Collaborator ? state.extra as Collaborator : null;
     return CollaboratorCreateUpdateScreen(collaborator: collaborator);
   }
 

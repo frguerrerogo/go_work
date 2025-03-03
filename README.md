@@ -174,11 +174,50 @@ lib/
 
 ## ✅ Pruebas y Calidad del Código
 
+#### Estructura de las pruebas
+
+Las pruebas están organizadas de acuerdo con la estructura de la aplicación:
+
+```
+├── presentation/
+│   ├── collaborator/
+│   │   ├── create_update/
+│   │   │   ├── cubit/
+│   │   │   │   └── collaborator_create_update_cubit_test.dart
+│   │   ├── home/
+│   │   │   ├── cubit/
+│   │   │   │   └── collaborator_home_cubit_test.dart
+│   │   ├── information/
+│   │   │   ├── cubit/
+│   │   │   │   └── collaborator_information_cubit_test.dart
+
+```
+
+#### Librerías utilizadas para testing
+
+Se utilizan las siguientes dependencias para pruebas unitarias y de widgets:
+
+- **mocktail**
+- **bloc_test**
+- **test**
+
+#### Ejecutar pruebas
+
 - Las pruebas unitarias e integración se ejecutan con:
-  ```bash
+
+```bash
+flutter test
+```
+
+Se recomienda también:
+- Analizar código estático:
+   ```bash
   flutter test
   ```
-- Se recomienda usar `flutter analyze` y `dart format` para mantener la calidad del código.
+- Formatear código:
+   ```bash
+  flutter test
+  ```
 
 ## 👤 Autor y Contacto
 
