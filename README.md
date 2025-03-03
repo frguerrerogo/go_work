@@ -186,5 +186,5 @@ lib/
 
 Para preguntas o soporte, puedes contactarme en:
 
-- **Email**: [tuemail@example.com](frguerrerogo@gmail.com)
-- **LinkedIn**: [Tu perfil](https://www.linkedin.com/in/frguerrerogo/)
+- **Email**: [frguerrerogo@gmail.com](frguerrerogo@gmail.com)
+- **LinkedIn**: [frguerrerogo](https://www.linkedin.com/in/frguerrerogo/)
