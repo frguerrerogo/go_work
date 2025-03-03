@@ -6,20 +6,35 @@ GoWork es una aplicación móvil desarrollada en Flutter diseñada para facilita
 
 ## Capturas de Pantalla
 
-### Lista de Colaboradores
-![Lista de Colaboradores](assets/images/readme/1_lista_colaboradores.png)
-
-### Búsqueda de Colaboradores
-![Búsqueda de Colaboradores](assets/images/readme/2_busqueda_colaboradores.png)
-
-### Crear Nuevo Colaborador
-![Crear Colaborador](assets/images/readme/3_crear_colaborador.png)
-
-### Detalles del Colaborador
-![Detalles del Colaborador](assets/images/readme/4_informacion-colaborador.png)
-
-### Editar Colaborador
-![Editar Colaborador](assets/images/readme/5_editar_colaborador.png)
+<table>
+  <tr>
+    <td>
+      <img src="assets/images/readme/1_lista_colaboradores.png" alt="Lista de Colaboradores" width="300" />
+      <p><strong>Lista de Colaboradores</strong></p>
+    </td>
+    <td>
+      <img src="assets/images/readme/2_busqueda_colaboradores.png" alt="Búsqueda de Colaboradores" width="300" />
+      <p><strong>Búsqueda de Colaboradores</strong></p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="assets/images/readme/3_crear_colaborador.png" alt="Crear Colaborador" width="300" />
+      <p><strong>Crear Nuevo Colaborador</strong></p>
+    </td>
+    <td>
+      <img src="assets/images/readme/4_informacion-colaborador.png" alt="Detalles del Colaborador" width="300" />
+      <p><strong>Detalles del Colaborador</strong></p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="assets/images/readme/5_editar_colaborador.png" alt="Editar Colaborador" width="300" />
+      <p><strong>Editar Colaborador</strong></p>
+    </td>
+    <td></td> <!-- Celda vacía si el número de imágenes es impar -->
+  </tr>
+</table>
 
 ## 🚀 Instalación y Configuración
 
