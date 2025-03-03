@@ -128,7 +128,7 @@ class _AddTextListWidgetState extends State<AddTextListWidget> {
                       ),
                     ),
                     IconButton(
-                      icon: const Icon(Icons.delete),
+                      icon: const Icon(Icons.delete_forever),
                       onPressed: () => _removeTextFromList(index), // Eliminar el texto
                     ),
                   ],

@@ -40,7 +40,6 @@ class CollaboratorCreateUpdateCubit extends Cubit<CollaboratorCreateUpdateState>
       } else {
         await collaboratorRepository.createCollaborator(collaborator);
       }
-      await Future.delayed(Duration(seconds: 2));
       emit(state.copyWith(loading: false));
     } catch (e) {
       emit(state.copyWith(
@@ -50,11 +49,24 @@ class CollaboratorCreateUpdateCubit extends Cubit<CollaboratorCreateUpdateState>
     }
   }
 
-  Future<void> pickImage(File image) async {
+  void isEditing(Collaborator collaborator) {
+    emit(state.copyWith(
+      collaborator: collaborator,
+      isEditing: true,
+      image: collaborator.imagePath != null ? File(collaborator.imagePath!) : null,
+      birthDate: collaborator.birthDate,
+    ));
+  }
+
+  void pickImage(File image) async {
     emit(state.copyWith(image: image));
   }
 
-  Future<void> updateBirthDate(DateTime? birthDate) async {
+  void updateBirthDate(DateTime? birthDate) async {
     emit(state.copyWith(birthDate: birthDate));
+  }
+
+  Future<void> deleteCollaborator(int? id) async {
+    await collaboratorRepository.deleteCollaborator(id.toString());
   }
 }

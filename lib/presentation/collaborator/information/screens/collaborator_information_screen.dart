@@ -67,11 +67,11 @@ class CollaboratorInformationScreen extends StatelessWidget {
                         '${collaborator.firstName} ${collaborator.lastName}',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
                         style: AppTextStyles.titleLarge(context),
                       ),
                       SizedBox(height: 10),
                       //BirthDate
-
                       Text(
                         'Fecha de Nacimiento: ${AppUtils.dateFormat(collaborator.birthDate)}', // Formato de fecha sin hora
                         style: AppTextStyles.bodyText(context),

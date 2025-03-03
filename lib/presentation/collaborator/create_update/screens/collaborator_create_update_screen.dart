@@ -8,7 +8,6 @@ import 'package:go_work/core/config/app_utils.dart';
 import 'package:go_work/core/config/app_text_styles.dart';
 import 'package:go_work/core/config/dependency_injector/dependency_injector.dart';
 import 'package:go_work/presentation/core/widgets/widgets.dart';
-import 'package:intl/intl.dart';
 
 import '../../utils/cubits/index.dart';
 
@@ -29,6 +28,14 @@ class CollaboratorCreateUpdateScreen extends StatelessWidget {
     DateTime? birthDate;
     List<String> addresses = [];
 
+    if (collaborator != null) {
+      cubit.isEditing(collaborator!);
+      nameController.text = collaborator!.firstName;
+      lastNameController.text = collaborator!.lastName;
+      addresses = [...collaborator!.addresses];
+      birthDate = collaborator!.birthDate;
+    }
+
     bool checkForm() {
       if (formKey.currentState!.validate()) {
         if (birthDate == null) {
@@ -46,7 +53,10 @@ class CollaboratorCreateUpdateScreen extends StatelessWidget {
         }
 
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Formulario enviado con éxito')),
+          SnackBar(
+            content: Text('Formulario enviado con éxito'),
+            duration: Duration(milliseconds: 500),
+          ),
         );
       }
       return true;
@@ -59,6 +69,17 @@ class CollaboratorCreateUpdateScreen extends StatelessWidget {
           collaborator == null ? 'Crear Colaborador' : 'Editar Colaborador',
           style: AppTextStyles.titleMedium(context),
         ),
+        actions: [
+          if (collaborator != null)
+            IconButtonCustom(
+              onTap: () async {
+                await cubit.deleteCollaborator(collaborator!.id);
+                if (context.mounted) GoRouter.of(context).pop(true);
+              },
+              icon: Icons.delete,
+              background: false,
+            ),
+        ],
       ),
       body: BlocProvider(
         create: (context) => cubit,
@@ -125,30 +146,28 @@ class CollaboratorCreateUpdateScreen extends StatelessWidget {
                       //addresses
                       AddTextListWidget(
                         title: 'Direcciones',
-                        textList: [],
+                        textList: addresses,
                         buttonText: 'Añadir direccion',
                         hintText: 'Direccion',
                         onChanged: (value) => addresses = value,
                       ),
 
                       //Button
-                      Builder(builder: (context) {
-                        return ElevatedButtonCustom(
-                          text: isEditing ? 'Actualizar' : 'Crear',
-                          onPressed: () async {
-                            final check = checkForm();
-                            if (check) {
-                              await cubit.saveCollaborator(
-                                  firstName: nameController.text,
-                                  lastName: lastNameController.text,
-                                  birthDate: birthDate!,
-                                  addresses: addresses);
+                      ElevatedButtonCustom(
+                        text: isEditing ? 'Actualizar' : 'Crear',
+                        onPressed: () async {
+                          final check = checkForm();
+                          if (check) {
+                            await cubit.saveCollaborator(
+                                firstName: nameController.text,
+                                lastName: lastNameController.text,
+                                birthDate: birthDate!,
+                                addresses: addresses);
 
-                              if (context.mounted) GoRouter.of(context).pop(true);
-                            }
-                          },
-                        );
-                      }),
+                            if (context.mounted) GoRouter.of(context).pop(true);
+                          }
+                        },
+                      ),
                     ],
                   ),
                 ),

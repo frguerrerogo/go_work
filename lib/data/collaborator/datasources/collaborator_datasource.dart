@@ -1,7 +1,6 @@
 import 'package:go_work/data/collaborator/models/collaborator_model.dart';
 import 'package:go_work/data/core/datasources/local/app_database.dart';
 
-
 class CollaboratorDataSource {
   final AppDatabase databaseHelper;
 

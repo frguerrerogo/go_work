@@ -13,17 +13,26 @@ import '../../../core/widgets/widgets.dart';
 import '../../utils/screens/index.dart';
 import '../../utils/cubits/index.dart';
 
-class CollaboratorHomeScreen extends StatelessWidget {
-  CollaboratorHomeScreen({super.key});
+class CollaboratorHomeScreen extends StatefulWidget {
+  const CollaboratorHomeScreen({super.key});
 
+  @override
+  State<CollaboratorHomeScreen> createState() => _CollaboratorHomeScreenState();
+}
+
+class _CollaboratorHomeScreenState extends State<CollaboratorHomeScreen> {
   final cubit = Injector.container.resolve<CollaboratorHomeCubit>();
+
+  @override
+  void initState() {
+    super.initState();
+    cubit.loadCollaborators();
+  }
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final searchController = TextEditingController();
-
-    cubit.loadCollaborators();
 
     return Scaffold(
       appBar: AppBar(
@@ -77,28 +86,49 @@ class CollaboratorHomeScreen extends StatelessWidget {
                         final collaborator = state.collaborators[index];
                         return Card(
                           margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                          child: ListTile(
-                            leading: CircleAvatar(
-                              backgroundImage: collaborator.imagePath != null
-                                  ? FileImage(File(collaborator.imagePath!)) as ImageProvider
-                                  : AssetImage(AppConstants.iconDefaultAvatar) as ImageProvider,
-                            ),
-                            title: Text(
-                              collaborator.firstName,
-                              style: AppTextStyles.titleSmall(context),
-                            ),
-                            subtitle: Text(
-                              collaborator.lastName,
-                              style: AppTextStyles.bodyText(context),
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => CollaboratorInformationScreen(collaboratorId: collaborator.id!),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Flexible(
+                                child: ListTile(
+                                  leading: CircleAvatar(
+                                    backgroundImage: collaborator.imagePath != null
+                                        ? FileImage(File(collaborator.imagePath!)) as ImageProvider
+                                        : AssetImage(AppConstants.iconDefaultAvatar) as ImageProvider,
+                                  ),
+                                  title: Text(
+                                    collaborator.firstName,
+                                    style: AppTextStyles.titleSmall(context),
+                                  ),
+                                  subtitle: Text(
+                                    collaborator.lastName,
+                                    style: AppTextStyles.bodyText(context),
+                                  ),
+                                  onTap: () => GoRouter.of(context).push(
+                                    AppRoutes.collaboratorInformation.replaceAll(
+                                      ':collaboratorId',
+                                      collaborator.id.toString(),
+                                    ),
+                                  ),
                                 ),
-                              );
-                            },
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  SizedBox(height: 10),
+                                  IconButtonCustom(
+                                    onTap: () => GoRouter.of(context)
+                                        .push(
+                                          AppRoutes.collaboratorCreateUpdate,
+                                          extra: collaborator,
+                                        )
+                                        .then((value) => cubit.loadCollaborators()),
+                                    icon: Icons.edit,
+                                    background: false,
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         );
                       },
@@ -112,11 +142,7 @@ class CollaboratorHomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          final result = await GoRouter.of(context).push(AppRoutes.collaboratorCreateUpdate);
-
-          if (result == true) {
-            cubit.loadCollaborators();
-          }
+          GoRouter.of(context).push(AppRoutes.collaboratorCreateUpdate).then((value) => cubit.loadCollaborators());
         },
         child: Icon(Icons.add),
       ),
