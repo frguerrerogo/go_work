@@ -190,7 +190,6 @@ Las pruebas están organizadas de acuerdo con la estructura de la aplicación:
 │   │   ├── information/
 │   │   │   ├── cubit/
 │   │   │   │   └── collaborator_information_cubit_test.dart
-
 ```
 
 #### Librerías utilizadas para testing
