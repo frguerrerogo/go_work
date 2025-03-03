@@ -4,11 +4,11 @@ import 'package:go_router/go_router.dart';
 // Importa tus pantallas aquí
 import 'package:go_work/presentation/core/utils/screens/index.dart';
 
-// Importa tu entidades de Collaborator aquí
-import 'package:go_work/domain/collaborator/entities/collaborator_entity.dart';
-
 // Importa tus utilidades aquí
 import 'package:go_work/core/config/app_utils.dart';
+
+// Importa tu entidades de Collaborator aquí
+import 'package:go_work/domain/collaborator/entities/collaborator_entity.dart';
 
 class ScreenBuilders {
   static Widget homeScreenBuilder(BuildContext context, GoRouterState state) {

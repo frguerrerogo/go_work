@@ -1,13 +1,20 @@
-import 'package:go_work/data/collaborator/adapters/collaborator_adapter.dart';
-import 'package:go_work/data/collaborator/datasources/collaborator_datasource.dart';
-import 'package:go_work/data/collaborator/repositories/collaborator_repository_impl.dart';
-import 'package:go_work/data/core/datasources/local/app_database.dart';
-import 'package:go_work/data/core/datasources/local/file_storage_impl.dart';
-import 'package:go_work/domain/collaborator/repositories/collaborator_repository.dart';
-import 'package:go_work/domain/core/datasourse/local/file_storage.dart';
-
 import 'package:kiwi/kiwi.dart';
 
+// Base de Datos
+import 'package:go_work/data/core/datasources/local/sqflite/app_database.dart';
+
+// DataSources
+import 'package:go_work/data/core/datasources/index.dart';
+import 'package:go_work/domain/core/datasourse/index.dart';
+
+// Adapters
+import 'package:go_work/data/core/adapter/index.dart';
+
+// Repositories
+import 'package:go_work/data/core/repositories/index.dart';
+import 'package:go_work/domain/core/repositories/index.dart';
+
+// Cubits
 import 'package:go_work/presentation/core/utils/cubits/index.dart';
 
 part 'dependency_injector.g.dart';
@@ -20,24 +27,24 @@ abstract class Injector {
     injector._configure();
   }
 
-  // 1. Base de Datos
+  // Base de Datos
   @Register.singleton(AppDatabase)
   void _registerDatabase();
 
-  // 2. DataSources
-  @Register.singleton(CollaboratorDataSource)
+  //  DataSources
+  @Register.singleton(CollaboratorDataSource, from: CollaboratorDataSourceImpl)
   @Register.singleton(FileStorage, from: FileStorageImpl)
   void _registerDataSources();
 
-  // 3. Adapters
+  // Adapters
   @Register.singleton(CollaboratorAdapter)
   void _registerAdapters();
 
-  // 4. Repositories
+  // Repositories
   @Register.singleton(CollaboratorRepository, from: CollaboratorRepositoryImpl)
   void _registerRepositories();
 
-  // 5. Cubits
+  // Cubits
   @Register.factory(CollaboratorHomeCubit)
   @Register.factory(CollaboratorInformationCubit)
   @Register.factory(CollaboratorCreateUpdateCubit)

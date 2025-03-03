@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:go_work/domain/collaborator/entities/collaborator_entity.dart';
 import 'package:go_work/domain/collaborator/repositories/collaborator_repository.dart';
 

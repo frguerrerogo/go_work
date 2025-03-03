@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:go_work/core/config/app_utils.dart';
-import 'package:go_work/core/config/app_text_styles.dart';
-import 'package:go_work/core/config/dependency_injector/dependency_injector.dart';
-import 'package:go_work/presentation/core/widgets/widgets.dart';
+import 'package:go_work/core/config/index.dart';
 
+import '../../../core/widgets/index.dart';
 import '../../utils/cubits/index.dart';
 
 import 'package:go_work/domain/collaborator/entities/collaborator_entity.dart';

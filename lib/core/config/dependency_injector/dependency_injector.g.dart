@@ -17,8 +17,8 @@ class _$Injector extends Injector {
   void _registerDataSources() {
     final KiwiContainer container = KiwiContainer();
     container
-      ..registerSingleton((c) =>
-          CollaboratorDataSource(databaseHelper: c.resolve<AppDatabase>()))
+      ..registerSingleton<CollaboratorDataSource>((c) =>
+          CollaboratorDataSourceImpl(databaseHelper: c.resolve<AppDatabase>()))
       ..registerSingleton<FileStorage>((c) => FileStorageImpl());
   }
 

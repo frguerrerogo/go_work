@@ -2,11 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_work/core/config/app_constants.dart';
-import 'package:go_work/core/config/app_text_styles.dart';
-import 'package:go_work/core/config/app_utils.dart';
 
-import 'package:go_work/core/config/dependency_injector/dependency_injector.dart';
+import 'package:go_work/core/config/index.dart';
 
 import '../../utils/cubits/index.dart';
 
@@ -73,7 +70,7 @@ class CollaboratorInformationScreen extends StatelessWidget {
                       SizedBox(height: 10),
                       //BirthDate
                       Text(
-                        'Fecha de Nacimiento: ${AppUtils.dateFormat(collaborator.birthDate)}', // Formato de fecha sin hora
+                        'Fecha de Nacimiento: ${AppUtils.dateFormat(collaborator.birthDate)}',
                         style: AppTextStyles.bodyText(context),
                       ),
                       SizedBox(height: 10),
@@ -83,10 +80,10 @@ class CollaboratorInformationScreen extends StatelessWidget {
                           'Direcciones',
                           style: AppTextStyles.titleSmall(context),
                         ),
-                        tilePadding: EdgeInsets.zero, // Elimina el padding interno
-                        childrenPadding: EdgeInsets.zero, // Evita espaciado extra en los hijos
-                        collapsedBackgroundColor: Colors.transparent, // Evita resaltado al estar cerrado
-                        backgroundColor: Colors.transparent, // Evita resaltado al estar expandido
+                        tilePadding: EdgeInsets.zero,
+                        childrenPadding: EdgeInsets.zero,
+                        collapsedBackgroundColor: Colors.transparent,
+                        backgroundColor: Colors.transparent,
                         children: collaborator.addresses.map((address) {
                           return Card(
                             margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),

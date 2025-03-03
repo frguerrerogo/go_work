@@ -1,6 +1,5 @@
 import 'package:go_work/data/collaborator/adapters/collaborator_adapter.dart';
-import 'package:go_work/data/collaborator/datasources/collaborator_datasource.dart';
-import 'package:go_work/data/collaborator/models/collaborator_model.dart';
+import 'package:go_work/domain/collaborator/datasources/collaborator_datasource.dart';
 import 'package:go_work/domain/collaborator/entities/collaborator_entity.dart';
 import 'package:go_work/domain/collaborator/repositories/collaborator_repository.dart';
 
