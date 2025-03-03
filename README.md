@@ -4,7 +4,7 @@
 
 GoWork es una aplicación móvil desarrollada en Flutter diseñada para facilitar la gestión de colaboradores y la asignación de ubicaciones de trabajo. Esta aplicación está pensada para optimizar la administración de recursos humanos, permitiendo a los administradores asignar ubicaciones de manera eficiente, así como mantener un registro organizado de los colaboradores.
 
-## Capturas de Pantalla
+## 📷 Capturas de Pantalla
 
 <table>
   <tr>
