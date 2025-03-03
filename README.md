@@ -211,6 +211,7 @@ lib/
 Las pruebas están organizadas de acuerdo con la estructura de la aplicación:
 
 ```
+test/
 ├── presentation/
 │   ├── collaborator/
 │   │   ├── create_update/
@@ -222,6 +223,13 @@ Las pruebas están organizadas de acuerdo con la estructura de la aplicación:
 │   │   ├── information/
 │   │   │   ├── cubit/
 │   │   │   │   └── collaborator_information_cubit_test.dart
+│   ├── core/
+│   │   ├── widgets/
+│   │   │   │   └── add_text_list_widget_test.dart
+│   │   │   │   └── animated_text_field_custom_test.dart
+│   │   │   │   └── elevated_button_custom_test.dart
+│   │   │   │   └── elevated_button_icon_text_custom_test.dart
+│   │   │   │   └── icon_button_custom_test.dart
 ```
 
 #### Librerías utilizadas para testing
