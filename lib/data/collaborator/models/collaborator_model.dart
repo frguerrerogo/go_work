@@ -1,10 +1,15 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'collaborator_model.g.dart'; // Archivo generado automáticamente
+
+@JsonSerializable() // Anotación para generar códig
 class CollaboratorModel {
   int? id;
   final String firstName;
   final String lastName;
   final int birthDate;
   final String? imagePath;
-  final List<String> addresses;
+  final String addresses;
 
   CollaboratorModel({
     this.id,
@@ -12,28 +17,12 @@ class CollaboratorModel {
     required this.lastName,
     required this.birthDate,
     this.imagePath,
-    this.addresses = const [],
+    required this.addresses,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'firstName': firstName,
-      'lastName': lastName,
-      'birthDate': birthDate,
-      'imagePath': imagePath,
-      'addresses': addresses.join(','),
-    };
-  }
+  // Método para deserializar JSON
+  factory CollaboratorModel.fromJson(Map<String, dynamic> json) => _$CollaboratorModelFromJson(json);
 
-  factory CollaboratorModel.fromMap(Map<String, dynamic> map) {
-    return CollaboratorModel(
-      id: map['id'],
-      firstName: map['firstName'],
-      lastName: map['lastName'],
-      birthDate: map['birthDate'],
-      imagePath: map['imagePath'],
-      addresses: map['addresses'].split(','),
-    );
-  }
+  // Método para serializar a JSON
+  Map<String, dynamic> toJson() => _$CollaboratorModelToJson(this);
 }

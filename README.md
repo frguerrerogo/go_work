@@ -251,11 +251,11 @@ flutter test
 Se recomienda también:
 - Analizar código estático:
    ```bash
-  flutter test
+  flutter analyze
   ```
 - Formatear código:
    ```bash
-  flutter test
+  dart format .
   ```
 
 ## 👤 Autor y Contacto

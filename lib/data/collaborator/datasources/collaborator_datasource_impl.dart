@@ -10,14 +10,14 @@ class CollaboratorDataSourceImpl implements CollaboratorDataSource {
   @override
   Future<int> insertCollaborator(CollaboratorModel collaborator) async {
     final db = await databaseHelper.database;
-    return await db.insert('Collaborator', collaborator.toMap());
+    return await db.insert('Collaborator', collaborator.toJson());
   }
 
   @override
   Future<List<CollaboratorModel>> getCollaborators() async {
     final db = await databaseHelper.database;
     final maps = await db.query('Collaborator');
-    return maps.map((map) => CollaboratorModel.fromMap(map)).toList();
+    return maps.map((map) => CollaboratorModel.fromJson(map)).toList();
   }
 
   @override
@@ -29,7 +29,7 @@ class CollaboratorDataSourceImpl implements CollaboratorDataSource {
       whereArgs: [id],
     );
     if (maps.isNotEmpty) {
-      return CollaboratorModel.fromMap(maps.first);
+      return CollaboratorModel.fromJson(maps.first);
     }
     return null;
   }
@@ -39,7 +39,7 @@ class CollaboratorDataSourceImpl implements CollaboratorDataSource {
     final db = await databaseHelper.database;
     await db.update(
       'Collaborator',
-      collaborator.toMap(),
+      collaborator.toJson(),
       where: 'id = ?',
       whereArgs: [collaborator.id],
     );
