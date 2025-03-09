@@ -1,1 +1,1 @@
-export '../../collaborator/repositories/collaborator_repository.dart';
+export 'package:go_work/domain/collaborator/repositories/collaborator_repository.dart';

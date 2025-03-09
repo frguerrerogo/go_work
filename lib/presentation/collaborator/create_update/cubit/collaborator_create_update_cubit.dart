@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:go_work/domain/collaborator/entities/collaborator_entity.dart';
-import 'package:go_work/domain/core/datasourse/local/file_storage.dart';
-import 'package:go_work/domain/collaborator/repositories/collaborator_repository.dart';
+import 'package:go_work/domain/core/datasourse/index.dart' show FileStorage;
+import 'package:go_work/domain/core/entities/index.dart' show Collaborator;
+import 'package:go_work/domain/core/repositories/index.dart' show CollaboratorRepository;
 
 part 'collaborator_create_update_state.dart';
 

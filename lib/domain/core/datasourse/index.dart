@@ -1,2 +1,2 @@
 export 'local/file_storage.dart';
-export '../../collaborator/datasources/collaborator_datasource.dart';
+export 'package:go_work/domain/collaborator/datasources/collaborator_datasource.dart';

@@ -4,12 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:go_work/core/config/index.dart';
-
-import '../../../core/widgets/index.dart';
-import '../../utils/cubits/index.dart';
-
-import 'package:go_work/domain/collaborator/entities/collaborator_entity.dart';
+import 'package:go_work/core/config/index.dart' show AppTextStyles, AppUtils, Injector;
+import 'package:go_work/domain/core/entities/index.dart' show Collaborator;
+import 'package:go_work/presentation/collaborator/utils/cubits/index.dart'
+    show CollaboratorCreateUpdateCubit, CollaboratorCreateUpdateState;
+import 'package:go_work/presentation/core/widgets/index.dart'
+    show
+        AddTextListCustom,
+        AnimatedTextFieldCustom,
+        ElevatedButtonCustom,
+        ElevatedButtonIconTextCustom,
+        IconButtonCustom;
 
 class CollaboratorCreateUpdateScreen extends StatelessWidget {
   final Collaborator? collaborator;
