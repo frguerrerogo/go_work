@@ -5,14 +5,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_work/domain/core/datasourse/index.dart' show FileStorage;
 import 'package:go_work/domain/core/entities/index.dart' show Collaborator;
-import 'package:go_work/domain/core/repositories/index.dart' show CollaboratorRepository;
+import 'package:go_work/domain/core/repositories/index.dart'
+    show CollaboratorRepository;
 
 part 'collaborator_create_update_state.dart';
 
-class CollaboratorCreateUpdateCubit extends Cubit<CollaboratorCreateUpdateState> {
+class CollaboratorCreateUpdateCubit
+    extends Cubit<CollaboratorCreateUpdateState> {
   final FileStorage fileStorage;
   final CollaboratorRepository collaboratorRepository;
-  CollaboratorCreateUpdateCubit(this.fileStorage, this.collaboratorRepository) : super(CollaboratorCreateUpdateState());
+  CollaboratorCreateUpdateCubit(this.fileStorage, this.collaboratorRepository)
+      : super(CollaboratorCreateUpdateState());
 
   Future<void> saveCollaborator({
     required String firstName,
@@ -56,7 +59,8 @@ class CollaboratorCreateUpdateCubit extends Cubit<CollaboratorCreateUpdateState>
     emit(state.copyWith(
       collaborator: collaborator,
       isEditing: true,
-      image: collaborator.imagePath != null ? File(collaborator.imagePath!) : null,
+      image:
+          collaborator.imagePath != null ? File(collaborator.imagePath!) : null,
       birthDate: collaborator.birthDate,
     ));
   }

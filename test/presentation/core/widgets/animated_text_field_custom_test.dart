@@ -4,7 +4,8 @@ import 'package:go_work/presentation/core/widgets/index.dart';
 
 void main() {
   group('AnimatedTextFieldCustom Tests', () {
-    testWidgets('render the widget with initial values', (WidgetTester tester) async {
+    testWidgets('render the widget with initial values',
+        (WidgetTester tester) async {
       const labelText = 'Enter your name';
       const icon = Icons.person;
       final controller = TextEditingController();
@@ -25,11 +26,13 @@ void main() {
       expect(find.text(labelText), findsOneWidget);
 
       final animatedContainerFinder = find.byType(AnimatedContainer);
-      final animatedContainer = tester.widget<AnimatedContainer>(animatedContainerFinder);
+      final animatedContainer =
+          tester.widget<AnimatedContainer>(animatedContainerFinder);
       expect(animatedContainer.constraints?.maxWidth, 0);
     });
 
-    testWidgets('show the animated line when focused', (WidgetTester tester) async {
+    testWidgets('show the animated line when focused',
+        (WidgetTester tester) async {
       const labelText = 'Enter your name';
       const icon = Icons.person;
       final controller = TextEditingController();
@@ -51,11 +54,13 @@ void main() {
       await tester.pumpAndSettle(); // Espera a que la animación termine
 
       final animatedContainerFinder = find.byType(AnimatedContainer);
-      final animatedContainer = tester.widget<AnimatedContainer>(animatedContainerFinder);
+      final animatedContainer =
+          tester.widget<AnimatedContainer>(animatedContainerFinder);
       expect(animatedContainer.constraints?.maxWidth, 150);
     });
 
-    testWidgets('show validation error when the field is empty', (WidgetTester tester) async {
+    testWidgets('show validation error when the field is empty',
+        (WidgetTester tester) async {
       const labelText = 'Enter your name';
       const icon = Icons.person;
       final controller = TextEditingController();
@@ -82,7 +87,8 @@ void main() {
       expect(find.text('Requerido'), findsOneWidget);
     });
 
-    testWidgets('call onChanged when text is entered', (WidgetTester tester) async {
+    testWidgets('call onChanged when text is entered',
+        (WidgetTester tester) async {
       const labelText = 'Enter your name';
       const icon = Icons.person;
       final controller = TextEditingController();

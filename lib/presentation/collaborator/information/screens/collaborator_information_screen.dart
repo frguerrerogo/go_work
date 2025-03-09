@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:go_work/core/config/index.dart' show Injector, AppUtils, AppTextStyles, AppConstants;
+import 'package:go_work/core/config/index.dart'
+    show Injector, AppUtils, AppTextStyles, AppConstants;
 import 'package:go_work/presentation/collaborator/utils/cubits/index.dart'
     show CollaboratorInformationCubit, CollaboratorInformationState;
 
@@ -29,7 +30,8 @@ class CollaboratorInformationScreen extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (context) => cubit,
-        child: BlocBuilder<CollaboratorInformationCubit, CollaboratorInformationState>(
+        child: BlocBuilder<CollaboratorInformationCubit,
+            CollaboratorInformationState>(
           builder: (context, state) {
             if (state.loading) {
               return Center(child: CircularProgressIndicator());
@@ -86,10 +88,13 @@ class CollaboratorInformationScreen extends StatelessWidget {
                         backgroundColor: Colors.transparent,
                         children: collaborator.addresses.map((address) {
                           return Card(
-                            margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                            margin: EdgeInsets.symmetric(
+                                vertical: 4, horizontal: 8),
                             elevation: 2,
                             child: ListTile(
-                              leading: Icon(Icons.location_city, color: colorScheme.onPrimaryContainer, size: 24),
+                              leading: Icon(Icons.location_city,
+                                  color: colorScheme.onPrimaryContainer,
+                                  size: 24),
                               title: Text(
                                 address,
                                 maxLines: 2,

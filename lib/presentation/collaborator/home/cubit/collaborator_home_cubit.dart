@@ -2,14 +2,16 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:go_work/domain/core/entities/index.dart' show Collaborator;
-import 'package:go_work/domain/core/repositories/index.dart' show CollaboratorRepository;
+import 'package:go_work/domain/core/repositories/index.dart'
+    show CollaboratorRepository;
 
 part 'collaborator_home_state.dart';
 
 class CollaboratorHomeCubit extends Cubit<CollaboratorHomeState> {
   final CollaboratorRepository collaboratorRepository;
 
-  CollaboratorHomeCubit(this.collaboratorRepository) : super(CollaboratorHomeState());
+  CollaboratorHomeCubit(this.collaboratorRepository)
+      : super(CollaboratorHomeState());
 
   Future<void> loadCollaborators() async {
     emit(state.copyWith(loading: true));
@@ -41,7 +43,8 @@ class CollaboratorHomeCubit extends Cubit<CollaboratorHomeState> {
       collaborators = state.collaboratorsAux;
     } else {
       collaborators = state.collaboratorsAux.where((collaborator) {
-        final fullName = '${collaborator.firstName} ${collaborator.lastName}'.toLowerCase();
+        final fullName =
+            '${collaborator.firstName} ${collaborator.lastName}'.toLowerCase();
         return fullName.contains(searchQuery.toLowerCase());
       }).toList();
     }

@@ -21,7 +21,8 @@ class CollaboratorModel {
   });
 
   // Método para deserializar JSON
-  factory CollaboratorModel.fromJson(Map<String, dynamic> json) => _$CollaboratorModelFromJson(json);
+  factory CollaboratorModel.fromJson(Map<String, dynamic> json) =>
+      _$CollaboratorModelFromJson(json);
 
   // Método para serializar a JSON
   Map<String, dynamic> toJson() => _$CollaboratorModelToJson(this);

@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:go_work/core/config/index.dart' show AppConstants, AppRoutes, AppTextStyles, Injector;
+import 'package:go_work/core/config/index.dart'
+    show AppConstants, AppRoutes, AppTextStyles, Injector;
 import 'package:go_work/presentation/collaborator/utils/cubits/index.dart'
     show CollaboratorHomeCubit, CollaboratorHomeState;
-import 'package:go_work/presentation/core/widgets/index.dart' show AnimatedTextFieldCustom, IconButtonCustom;
+import 'package:go_work/presentation/core/widgets/index.dart'
+    show AnimatedTextFieldCustom, IconButtonCustom;
 
 class CollaboratorHomeScreen extends StatefulWidget {
   const CollaboratorHomeScreen({super.key});
@@ -81,16 +83,22 @@ class _CollaboratorHomeScreenState extends State<CollaboratorHomeScreen> {
                       itemBuilder: (context, index) {
                         final collaborator = state.collaborators[index];
                         return Card(
-                          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                          margin:
+                              EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Flexible(
                                 child: ListTile(
                                   leading: CircleAvatar(
-                                    backgroundImage: collaborator.imagePath != null
-                                        ? FileImage(File(collaborator.imagePath!)) as ImageProvider
-                                        : AssetImage(AppConstants.iconDefaultAvatar) as ImageProvider,
+                                    backgroundImage: collaborator.imagePath !=
+                                            null
+                                        ? FileImage(
+                                                File(collaborator.imagePath!))
+                                            as ImageProvider
+                                        : AssetImage(
+                                                AppConstants.iconDefaultAvatar)
+                                            as ImageProvider,
                                   ),
                                   title: Text(
                                     collaborator.firstName,
@@ -101,7 +109,8 @@ class _CollaboratorHomeScreenState extends State<CollaboratorHomeScreen> {
                                     style: AppTextStyles.bodyText(context),
                                   ),
                                   onTap: () => GoRouter.of(context).push(
-                                    AppRoutes.collaboratorInformation.replaceAll(
+                                    AppRoutes.collaboratorInformation
+                                        .replaceAll(
                                       ':collaboratorId',
                                       collaborator.id.toString(),
                                     ),
@@ -118,7 +127,8 @@ class _CollaboratorHomeScreenState extends State<CollaboratorHomeScreen> {
                                           AppRoutes.collaboratorCreateUpdate,
                                           extra: collaborator,
                                         )
-                                        .then((value) => cubit.loadCollaborators()),
+                                        .then((value) =>
+                                            cubit.loadCollaborators()),
                                     icon: Icons.edit,
                                     background: false,
                                   ),
@@ -138,7 +148,9 @@ class _CollaboratorHomeScreenState extends State<CollaboratorHomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          GoRouter.of(context).push(AppRoutes.collaboratorCreateUpdate).then((value) => cubit.loadCollaborators());
+          GoRouter.of(context)
+              .push(AppRoutes.collaboratorCreateUpdate)
+              .then((value) => cubit.loadCollaborators());
         },
         child: Icon(Icons.add),
       ),

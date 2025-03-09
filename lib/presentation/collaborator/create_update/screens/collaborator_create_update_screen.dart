@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:go_work/core/config/index.dart' show AppTextStyles, AppUtils, Injector;
+import 'package:go_work/core/config/index.dart'
+    show AppTextStyles, AppUtils, Injector;
 import 'package:go_work/domain/core/entities/index.dart' show Collaborator;
 import 'package:go_work/presentation/collaborator/utils/cubits/index.dart'
     show CollaboratorCreateUpdateCubit, CollaboratorCreateUpdateState;
@@ -43,7 +44,8 @@ class CollaboratorCreateUpdateScreen extends StatelessWidget {
       if (formKey.currentState!.validate()) {
         if (birthDate == null) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Por favor selecciona una fecha de cumpleaños')),
+            SnackBar(
+                content: Text('Por favor selecciona una fecha de cumpleaños')),
           );
           return false;
         }
@@ -86,7 +88,8 @@ class CollaboratorCreateUpdateScreen extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (context) => cubit,
-        child: BlocBuilder<CollaboratorCreateUpdateCubit, CollaboratorCreateUpdateState>(
+        child: BlocBuilder<CollaboratorCreateUpdateCubit,
+            CollaboratorCreateUpdateState>(
           builder: (context, state) {
             final isEditing = state.isEditing;
             if (state.loading) {

@@ -4,7 +4,8 @@ import 'package:go_work/presentation/core/widgets/index.dart';
 
 void main() {
   group('AddTextListCustom Tests', () {
-    testWidgets('render the widget with initial values', (WidgetTester tester) async {
+    testWidgets('render the widget with initial values',
+        (WidgetTester tester) async {
       const title = 'Add Items';
       const hintText = 'Enter an item';
       const buttonText = 'Add';
@@ -34,7 +35,8 @@ void main() {
       expect(find.text(buttonText), findsOneWidget);
     });
 
-    testWidgets('add text to the list when the button is pressed', (WidgetTester tester) async {
+    testWidgets('add text to the list when the button is pressed',
+        (WidgetTester tester) async {
       const title = 'Add Items';
       const hintText = 'Enter an item';
       const buttonText = 'Add';
@@ -69,7 +71,8 @@ void main() {
       expect(updatedList, contains(newItem));
     });
 
-    testWidgets('remove text from the list when the delete button is pressed', (WidgetTester tester) async {
+    testWidgets('remove text from the list when the delete button is pressed',
+        (WidgetTester tester) async {
       const title = 'Add Items';
       const hintText = 'Enter an item';
       const buttonText = 'Add';

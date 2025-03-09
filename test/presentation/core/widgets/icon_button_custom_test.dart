@@ -4,7 +4,8 @@ import 'package:go_work/presentation/core/widgets/index.dart';
 
 void main() {
   group('IconButtonCustom Tests', () {
-    testWidgets('should render the icon and container correctly', (WidgetTester tester) async {
+    testWidgets('should render the icon and container correctly',
+        (WidgetTester tester) async {
       const icon = Icons.add;
 
       await tester.pumpWidget(
@@ -23,7 +24,8 @@ void main() {
       expect(find.byType(Container), findsOneWidget);
     });
 
-    testWidgets('should call onTap when the button is tapped', (WidgetTester tester) async {
+    testWidgets('should call onTap when the button is tapped',
+        (WidgetTester tester) async {
       var isTapped = false;
 
       await tester.pumpWidget(
@@ -74,7 +76,8 @@ void main() {
       expect(container.constraints?.maxWidth, 25);
       expect(container.constraints?.maxHeight, 25);
 
-      expect(container.margin, equals(const EdgeInsets.symmetric(horizontal: 15)));
+      expect(
+          container.margin, equals(const EdgeInsets.symmetric(horizontal: 15)));
 
       final iconFinder = find.byType(Icon);
       final icon = tester.widget<Icon>(iconFinder);

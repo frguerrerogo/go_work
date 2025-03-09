@@ -5,7 +5,8 @@ import 'package:go_work/domain/collaborator/entities/collaborator_entity.dart';
 import 'package:go_work/domain/collaborator/repositories/collaborator_repository.dart';
 import 'package:go_work/presentation/collaborator/information/cubit/collaborator_information_cubit.dart';
 
-class MockCollaboratorRepository extends Mock implements CollaboratorRepository {}
+class MockCollaboratorRepository extends Mock
+    implements CollaboratorRepository {}
 
 void main() {
   group('CollaboratorInformationCubit - loadCollaboratorInfo', () {
@@ -38,7 +39,8 @@ void main() {
         );
       },
       expect: () => [
-        isA<CollaboratorInformationState>().having((state) => state.loading, 'loading', true),
+        isA<CollaboratorInformationState>()
+            .having((state) => state.loading, 'loading', true),
         cubit.state.copyWith(
           loading: false,
           collaborator: collaborator,
@@ -56,7 +58,8 @@ void main() {
         );
       },
       expect: () => [
-        isA<CollaboratorInformationState>().having((state) => state.loading, 'loading', true),
+        isA<CollaboratorInformationState>()
+            .having((state) => state.loading, 'loading', true),
         cubit.state.copyWith(
           loading: false,
           errorMessage: 'Colaborador no encontrado',
@@ -74,7 +77,8 @@ void main() {
         );
       },
       expect: () => [
-        isA<CollaboratorInformationState>().having((state) => state.loading, 'loading', true),
+        isA<CollaboratorInformationState>()
+            .having((state) => state.loading, 'loading', true),
         cubit.state.copyWith(
           loading: false,
           errorMessage: 'Error al cargar la información del colaborador',

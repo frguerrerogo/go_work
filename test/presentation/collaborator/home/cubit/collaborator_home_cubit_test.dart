@@ -7,7 +7,8 @@ import 'package:go_work/domain/collaborator/repositories/collaborator_repository
 
 import 'package:go_work/presentation/core/utils/cubits/index.dart';
 
-class MockCollaboratorRepository extends Mock implements CollaboratorRepository {}
+class MockCollaboratorRepository extends Mock
+    implements CollaboratorRepository {}
 
 void main() {
   group(
@@ -44,7 +45,8 @@ void main() {
           ).thenAnswer((_) async => collaborators);
         },
         expect: () => [
-          isA<CollaboratorHomeState>().having((state) => state.loading, 'loading', true),
+          isA<CollaboratorHomeState>()
+              .having((state) => state.loading, 'loading', true),
           cubit.state.copyWith(
             loading: false,
             collaborators: collaborators,
@@ -58,10 +60,12 @@ void main() {
         build: () => cubit,
         act: (cubit) => cubit.loadCollaborators(),
         setUp: () {
-          when(() => mockRepository.getCollaborators()).thenThrow(Exception('Error loading collaborators'));
+          when(() => mockRepository.getCollaborators())
+              .thenThrow(Exception('Error loading collaborators'));
         },
         expect: () => [
-          isA<CollaboratorHomeState>().having((state) => state.loading, 'loading', true),
+          isA<CollaboratorHomeState>()
+              .having((state) => state.loading, 'loading', true),
           cubit.state.copyWith(
             loading: false,
             errorMessage: 'Error: Exception: Error loading collaborators',

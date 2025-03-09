@@ -10,7 +10,8 @@ import 'package:go_work/presentation/collaborator/create_update/cubit/collaborat
 
 class MockFileStorage extends Mock implements FileStorage {}
 
-class MockCollaboratorRepository extends Mock implements CollaboratorRepository {}
+class MockCollaboratorRepository extends Mock
+    implements CollaboratorRepository {}
 
 class FakeCollaborator extends Fake implements Collaborator {}
 
@@ -55,12 +56,16 @@ void main() {
         addresses: [],
       ),
       setUp: () {
-        when(() => mockFileStorage.saveImageToStorage(imageFile)).thenAnswer((_) async => 'path/to/image.jpg');
-        when(() => mockRepository.createCollaborator(any())).thenAnswer((_) async {});
+        when(() => mockFileStorage.saveImageToStorage(imageFile))
+            .thenAnswer((_) async => 'path/to/image.jpg');
+        when(() => mockRepository.createCollaborator(any()))
+            .thenAnswer((_) async {});
       },
       expect: () => [
-        isA<CollaboratorCreateUpdateState>().having((state) => state.loading, 'loading', true),
-        isA<CollaboratorCreateUpdateState>().having((state) => state.loading, 'loading', false),
+        isA<CollaboratorCreateUpdateState>()
+            .having((state) => state.loading, 'loading', true),
+        isA<CollaboratorCreateUpdateState>()
+            .having((state) => state.loading, 'loading', false),
       ],
     );
 
@@ -74,10 +79,12 @@ void main() {
         addresses: [],
       ),
       setUp: () {
-        when(() => mockRepository.createCollaborator(any())).thenThrow(Exception('Error saving collaborator'));
+        when(() => mockRepository.createCollaborator(any()))
+            .thenThrow(Exception('Error saving collaborator'));
       },
       expect: () => [
-        isA<CollaboratorCreateUpdateState>().having((state) => state.loading, 'loading', true),
+        isA<CollaboratorCreateUpdateState>()
+            .having((state) => state.loading, 'loading', true),
         cubit.state.copyWith(
           loading: false,
           errorMessage: 'Error: Exception: Error saving collaborator',
@@ -122,10 +129,14 @@ void main() {
       build: () => cubit,
       act: (cubit) => cubit.deleteCollaborator(collaborator.id),
       setUp: () {
-        when(() => mockRepository.deleteCollaborator(collaborator.id.toString())).thenAnswer((_) async {});
+        when(() =>
+                mockRepository.deleteCollaborator(collaborator.id.toString()))
+            .thenAnswer((_) async {});
       },
       verify: (_) {
-        verify(() => mockRepository.deleteCollaborator(collaborator.id.toString())).called(1);
+        verify(() =>
+                mockRepository.deleteCollaborator(collaborator.id.toString()))
+            .called(1);
       },
     );
   });

@@ -4,7 +4,8 @@ import 'package:go_work/presentation/core/widgets/index.dart';
 
 void main() {
   group('ElevatedButtonCustom Widget Tests', () {
-    testWidgets('render the button with the correct text', (WidgetTester tester) async {
+    testWidgets('render the button with the correct text',
+        (WidgetTester tester) async {
       const buttonText = 'Click Me';
 
       await tester.pumpWidget(
@@ -23,7 +24,8 @@ void main() {
       expect(buttonFinder, findsOneWidget);
     });
 
-    testWidgets('call onPressed when the button is tapped', (WidgetTester tester) async {
+    testWidgets('call onPressed when the button is tapped',
+        (WidgetTester tester) async {
       var isPressed = false;
 
       await tester.pumpWidget(
@@ -60,7 +62,8 @@ void main() {
       );
 
       final elevatedButtonFinder = find.byType(ElevatedButton);
-      final elevatedButton = tester.widget<ElevatedButton>(elevatedButtonFinder);
+      final elevatedButton =
+          tester.widget<ElevatedButton>(elevatedButtonFinder);
 
       expect(elevatedButton.style?.backgroundColor, isNotNull);
       expect(elevatedButton.style?.foregroundColor, isNotNull);
